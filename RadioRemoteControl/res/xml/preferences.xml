@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android" >
+    <EditTextPreference android:key="@string/webiopi_url" android:title="WebIoPi URL" android:summary="URL des zu steuernden Raspberry Pi"/>
+    <EditTextPreference android:key="@string/webiopi_port" android:title="WebIoPi Port"/>
+    <EditTextPreference android:key="@string/mjpgstream_url" android:title="MjpegStreamer URL"/>
+    <EditTextPreference android:key="@string/mjpgstream_port" android:title="MjpegStreamer Port"/>
+    <ListPreference android:title="Joystick count"
+        android:summary="Sekĺect number of Joysticks"
+        android:key="joystickcount"
+        android:defaultValue="1"/>
+
+</PreferenceScreen>
