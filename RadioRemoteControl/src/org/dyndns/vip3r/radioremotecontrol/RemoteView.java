@@ -28,9 +28,9 @@ public class RemoteView extends SurfaceView implements SurfaceHolder.Callback {
 	private Joystick joy2;
 	private RemoteControlThread remoteThread;
 	private MjpegInputStream mjpegIn;
+	private boolean streamAvaliable = false;
 	
 //	private SensorActivity sensors;
-	
     
 	public void setSize() {
 		height = getHeight();
@@ -42,8 +42,10 @@ public class RemoteView extends SurfaceView implements SurfaceHolder.Callback {
 		getHolder().addCallback(this);
 		setFocusable(true);
 		remoteThread = new RemoteControlThread(getHolder(), this);
-		mjpegIn = MjpegInputStream.read("http://192.168.123.6:8080/?action=stream");
-		
+		mjpegIn = MjpegInputStream.read("http://192.168.123.16:8080/?action=stream");
+		if(mjpegIn != null){
+			streamAvaliable = true;
+		}
 //		sensors = new SensorActivity(this);
 		
 		pJoystick = new Paint();
@@ -60,11 +62,12 @@ public class RemoteView extends SurfaceView implements SurfaceHolder.Callback {
 
 		canvas.drawColor(Color.GRAY);
 		Rect mJpegDestRect = new Rect(0,0,width,height);
-		Bitmap mjpeg = mjpegIn.readMjpegFrame();
-		
-		
-		canvas.drawBitmap(mjpeg, null, mJpegDestRect, pMjpeg);
-		
+		if(streamAvaliable == true){
+			Bitmap mjpeg = mjpegIn.readMjpegFrame();
+			canvas.drawBitmap(mjpeg, null, mJpegDestRect, pMjpeg);
+			
+		}
+			
 		canvas.drawCircle(joy1.getX0(), joy1.getY0(), joy1.getRadius(), pJoypad);
 		canvas.drawCircle(joy1.getX(), joy1.getY(), joy1.getRadius() / 10,
 				pJoystick);

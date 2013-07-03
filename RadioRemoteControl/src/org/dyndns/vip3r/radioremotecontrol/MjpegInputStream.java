@@ -7,8 +7,11 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.util.Properties;
 
+import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
+import org.apache.http.StatusLine;
 import org.apache.http.client.ClientProtocolException;
+import org.apache.http.client.HttpClient;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.http.auth.*;
@@ -25,21 +28,29 @@ public class MjpegInputStream extends DataInputStream {
     private int mContentLength = -1;
     
     public static MjpegInputStream read(String url) {
-        
-        HttpResponse res;
-        DefaultHttpClient httpclient = new DefaultHttpClient();
-        httpclient.getCredentialsProvider().setCredentials(
-        new AuthScope(AuthScope.ANY_HOST, AuthScope.ANY_PORT),
-        new UsernamePasswordCredentials("admin", "irislab"));
+    	HttpResponse response;
+        HttpClient httpclient = new DefaultHttpClient();
+        HttpGet request = new HttpGet(url);
+        request.setHeader("User-Agent", "set your desired User-Agent");
+       // httpclient.getCredentialsProvider().setCredentials(
+       // new AuthScope(AuthScope.ANY_HOST, AuthScope.ANY_PORT),
+       // new UsernamePasswordCredentials("admin", "irislab"));
         try {
-            res = httpclient.execute(new HttpGet(url));
-            return new MjpegInputStream(res.getEntity().getContent());                          
+        	response = httpclient.execute(request);
+        	// Check if server response is valid
+            StatusLine status = response.getStatusLine();
+            if (status.getStatusCode() != 200) {
+                throw new IOException("Invalid response from server: " + status.toString());
+            }
+//            HttpEntity entity = response.getEntity();
+//            InputStream inputStream = entity.getContent();
+            return new MjpegInputStream(response.getEntity().getContent());                          
         } catch (ClientProtocolException e) {}
         catch (IllegalArgumentException e) {}
         catch (IOException e) {}
         return null;
     }
-        
+    
     public MjpegInputStream(InputStream in) { super(new BufferedInputStream(in, FRAME_MAX_LENGTH)); }
         
     private int getEndOfSeqeunce(DataInputStream in, byte[] sequence) throws IOException {

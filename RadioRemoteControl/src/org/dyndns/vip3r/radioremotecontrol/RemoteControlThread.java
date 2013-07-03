@@ -29,7 +29,7 @@ public class RemoteControlThread extends Thread {
 		this.joy2 = joy2;
 		servo1 = new Servo(90, joy1.getRadius());
 		servo2 = new Servo(90, joy2.getRadius());
-		pwm = new WebIoPiPwm("http://192.168.123.6");
+		pwm = new WebIoPiPwm("http://192.168.123.16");
 	}
 
 	public Canvas getCanvas() {
