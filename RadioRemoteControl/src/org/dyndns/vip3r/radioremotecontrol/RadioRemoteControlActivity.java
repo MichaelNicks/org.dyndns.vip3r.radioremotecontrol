@@ -25,11 +25,12 @@ public class RadioRemoteControlActivity extends Activity implements OnClickListe
 	    getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,WindowManager.LayoutParams.FLAG_FULLSCREEN);	
 //		setContentView(new RemoteView(this));
 	    setContentView(R.layout.radioremotecontrol);
-	    WebView myWebView = (WebView) findViewById(R.id.webview);
+	   /* WebView myWebView = (WebView) findViewById(R.id.webview);
 	    myWebView.getSettings().setJavaScriptEnabled(true);
 	    myWebView.getSettings().setLayoutAlgorithm(LayoutAlgorithm.SINGLE_COLUMN); 
 	    myWebView.setScrollBarStyle(WebView.SCROLLBARS_OUTSIDE_OVERLAY);
 	    myWebView.loadUrl("http://192.168.123.16:8080/javascript_simple.html");
+	    */
 	    bStart = (Button) findViewById(R.id.bStart);
 	    bSettings = (Button) findViewById(R.id.bSettings);
 	    bStart.setOnClickListener(this);
@@ -48,6 +49,8 @@ public class RadioRemoteControlActivity extends Activity implements OnClickListe
 			this.finish();
 			break;
 		case R.id.bSettings:
+			Intent newSettingsScreen = new Intent(this, SettingsActivity.class );
+			startActivity(newSettingsScreen);
 			this.finish();
 			break;
 		}

@@ -11,4 +11,6 @@
 	<string name="joy1_yangle">90</string>
 	<string name="joy2_xangle">90</string>
 	<string name="joy2_yangle">90</string>
+	<string name="layout_start">start</string>
+	<string name="layout_settings">settings</string>
 </resources>
