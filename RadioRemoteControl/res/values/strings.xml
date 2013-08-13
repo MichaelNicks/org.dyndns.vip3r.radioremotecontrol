@@ -3,14 +3,18 @@
 
     <string name="app_name">RadioRemoteControl</string>
     <string name="action_settings">Settings</string>
-    <string name="webiopi_url">http://</string>
-    <string name="webiopi_port">8000</string>
-    <string name="mjpgstream_url">http://</string>
-    <string name="mjpgstream_port">8080</string>
     <string name="joy1_xangle">90</string>
 	<string name="joy1_yangle">90</string>
 	<string name="joy2_xangle">90</string>
 	<string name="joy2_yangle">90</string>
 	<string name="layout_start">start</string>
 	<string name="layout_settings">settings</string>
+	<string name="same_url_title">Same URL for WebIOPi and MJPGStreamer</string>
+	<string name="raspberry_url_title">Raspberry Pi URL</string>
+	<string name="raspberry_url_summ">URL des zu steuernden Raspberry Pi</string><string name="webiopi_url_title">WebIoPi URL</string>
+	
+	<string name="mjpgstream_url_title">MjpegStream URL</string>
+	<string name="webiopi_port_title">WebIoPi Port</string>
+	<string name="mjpgstream_port_title">MjpegStream Port</string>
+	<string name="menu_settings">Menu Settings</string>
 </resources>

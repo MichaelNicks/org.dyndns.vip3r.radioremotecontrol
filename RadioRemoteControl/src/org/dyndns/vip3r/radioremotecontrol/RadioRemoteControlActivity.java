@@ -1,16 +1,14 @@
 package org.dyndns.vip3r.radioremotecontrol;
 
 import android.app.Activity;
-import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.Display;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.Window;
 import android.view.WindowManager;
-import android.webkit.WebSettings.LayoutAlgorithm;
-import android.webkit.WebView;
 import android.widget.Button;
 
 public class RadioRemoteControlActivity extends Activity implements OnClickListener{
@@ -21,6 +19,7 @@ public class RadioRemoteControlActivity extends Activity implements OnClickListe
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
+		
 		requestWindowFeature(Window.FEATURE_NO_TITLE);
 	    getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,WindowManager.LayoutParams.FLAG_FULLSCREEN);	
 //		setContentView(new RemoteView(this));
@@ -38,7 +37,28 @@ public class RadioRemoteControlActivity extends Activity implements OnClickListe
 	    
 	}
 	
+	@Override
+	public boolean onCreateOptionsMenu(Menu menu) {
+		getMenuInflater().inflate(R.menu.activity_main, menu);
+		return true;
+	}
 	
+	@Override
+	public boolean onOptionsItemSelected(MenuItem item) { 
+		switch (item.getItemId()) { 
+			case R.id.menu_settings: 
+				startSettings(); 
+				return true; 
+			default: 
+				return super.onOptionsItemSelected(item); 
+		}
+	}
+	
+	private void startSettings() {
+		Intent intent = new Intent();
+		intent.setClass(RadioRemoteControlActivity.this, SettingsActivity.class);
+		startActivity(intent);
+		}
 
 	@Override
 	public void onClick(View v) {

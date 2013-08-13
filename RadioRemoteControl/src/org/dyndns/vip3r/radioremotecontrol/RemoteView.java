@@ -4,12 +4,14 @@ package org.dyndns.vip3r.radioremotecontrol;
 import java.io.IOException;
 
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Rect;
-
+import android.os.AsyncTask;
+import android.preference.PreferenceManager;
 import android.util.Log;
 import android.view.MotionEvent;
 import android.view.SurfaceHolder;
@@ -17,6 +19,7 @@ import android.view.SurfaceView;
 
 public class RemoteView extends SurfaceView implements SurfaceHolder.Callback {
 
+	private Context context;
 	private Paint pJoystick;
 	private Paint pJoypad;
 	private Paint pMjpeg;
@@ -29,7 +32,9 @@ public class RemoteView extends SurfaceView implements SurfaceHolder.Callback {
 	private RemoteControlThread remoteThread;
 	private MjpegInputStream mjpegIn;
 	private boolean streamAvaliable = false;
-	
+
+	String mjpgstream_url;
+	String mjpgstream_port;
 //	private SensorActivity sensors;
     
 	public void setSize() {
@@ -37,15 +42,30 @@ public class RemoteView extends SurfaceView implements SurfaceHolder.Callback {
 		width = getWidth();
 	}
 
+	
+	
 	public RemoteView(Context context) {
 		super(context);
+		this.context = context;
 		getHolder().addCallback(this);
 		setFocusable(true);
-		remoteThread = new RemoteControlThread(getHolder(), this);
-		mjpegIn = MjpegInputStream.read("http://192.168.123.16:8080/?action=stream");
-		if(mjpegIn != null){
-			streamAvaliable = true;
-		}
+		loadPreferences();
+		//remoteThread = new RemoteControlThread(getHolder(), this, context);
+		
+		//Log.d("CV", "test");
+		new Thread(new Runnable() {
+			public void run() {
+				mjpegIn = MjpegInputStream.read(mjpgstream_url +":"+ mjpgstream_port +"/?action=stream");
+				//mjpegIn = MjpegInputStream.read("http://rasp-cam.fritz.box:8080/?action=stream");
+				if(mjpegIn != null){
+					streamAvaliable = true;
+					Log.d("CV", "test");
+				}
+			}
+			
+		}).start();
+		
+		
 //		sensors = new SensorActivity(this);
 		
 		pJoystick = new Paint();
@@ -53,10 +73,31 @@ public class RemoteView extends SurfaceView implements SurfaceHolder.Callback {
 		pMjpeg = new Paint();
 		pJoystick.setColor(Color.BLACK);
 		pJoypad.setColor(Color.GREEN);
-		remoteThread = new RemoteControlThread(getHolder(), this);
+		remoteThread = new RemoteControlThread(getHolder(), this, context);
 	}
 
-	
+	private void loadPreferences() {
+		
+		SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(context);
+		if(sharedPref.getBoolean(SettingsFragment.KEY_SAME_URL, true) == true)
+		{
+			mjpgstream_url = sharedPref.getString(SettingsFragment.KEY_RASPBERRY_URL, "http://192.168.0.1");
+		}
+		else
+		{
+			mjpgstream_url = sharedPref.getString(SettingsFragment.KEY_MJPGSTREAM_URL, "http://192.168.0.1");
+		}
+		mjpgstream_port = sharedPref.getString(SettingsFragment.KEY_MJPGSTREAM_PORT, "8080");
+		Log.d("CV", mjpgstream_url);
+		Log.d("CV", mjpgstream_port);
+		
+		
+	/*	SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getContext());
+		webiopi_url = sharedPreferences.getString("webiopi_url", "-");
+		webiopi_port = sharedPreferences.getInt("webiopi_port", 80);
+		mjpgstream_url = sharedPreferences.getString("mjpegstream_url", "-");
+		mjpgstream_port = sharedPreferences.getInt("mjpgstream_port", 8080);*/
+	}
 	
 	protected void doDraw(Canvas canvas) throws IOException {
 
