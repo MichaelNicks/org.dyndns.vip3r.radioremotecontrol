@@ -2,19 +2,42 @@
 <resources>
 
     <string name="app_name">RadioRemoteControl</string>
-    <string name="action_settings">Settings</string>
-    <string name="joy1_xangle">90</string>
-	<string name="joy1_yangle">90</string>
-	<string name="joy2_xangle">90</string>
-	<string name="joy2_yangle">90</string>
+   
 	<string name="layout_start">start</string>
 	<string name="layout_settings">settings</string>
+	
+	<string name="network_preference_fragment_title">Network Settings</string>
+	<string name="network_preference_fragment_summ">Configure network connection</string>
 	<string name="same_url_title">Same URL for WebIOPi and MJPGStreamer</string>
 	<string name="raspberry_url_title">Raspberry Pi URL</string>
 	<string name="raspberry_url_summ">URL des zu steuernden Raspberry Pi</string><string name="webiopi_url_title">WebIoPi URL</string>
-	
 	<string name="mjpgstream_url_title">MjpegStream URL</string>
 	<string name="webiopi_port_title">WebIoPi Port</string>
 	<string name="mjpgstream_port_title">MjpegStream Port</string>
+	
+	<string name="webiopi_preference_fragment_title">WebIOPi Settings</string>
+	<string name="webiopi_preference_fragment_summ">Configure WebIOPi (e.g. GPIO, I2C modules)</string>
+	
+	<string name="control_elements_fragment_title">Control Elements</string>
+	<string name="control_elements_fragment_summ">Configure Control Elements (e.g. Joystick, Switch)</string>
+	<string name="control_topleft_title">TopLeft Elemtent</string>
+	<string name="control_topleft_list_title">Select Control</string>
+		<string name="control_topleft_subscreen_title">Cotrolsettings</string>
+		<string name="control_topleft_subscreen_summ">Controlsettings</string>
+	
+	<string name="control_topcenter_title">TopCenter Elemtent</string>
+	<string name="control_topcenter_list_title">Select Control</string>
+	<string name="control_topright_title">TopRight Elemtent</string>
+	<string name="control_topright_list_title">Select Control</string>
+	<string name="control_bottomleft_title">BottomLeft Elemtent</string>
+	<string name="control_bottomleft_list_title">Select Control</string>
+	<string name="control_bottomcenter_title">BottomCenter Elemtent</string>
+	<string name="control_bottomcenter_list_title">Select Control</string>
+	<string name="control_bottomright_title">BottomRight Elemtent</string>
+	<string name="control_bottomright_list_title">Select Control</string>
+	
+	
+	
 	<string name="menu_settings">Menu Settings</string>
+	
 </resources>

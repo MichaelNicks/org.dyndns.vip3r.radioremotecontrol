@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<preference-headers xmlns:android="http://schemas.android.com/apk/res/android" >
+
+    <header
+        android:fragment="org.dyndns.vip3r.radioremotecontrol.preferences.NetworkPreferenceFragment"
+        android:key="network_preference_fragment" 
+        android:title="@string/network_preference_fragment_title" 
+        android:summary="@string/network_preference_fragment_summ" >
+    </header>
+    <header
+        android:fragment="org.dyndns.vip3r.radioremotecontrol.preferences.WebiopiPreferenceFragment"
+        android:key="webiopi_preference_fragment" 
+        android:title="@string/webiopi_preference_fragment_title" 
+        android:summary="@string/webiopi_preference_fragment_summ" >
+    </header>
+ 	<header
+        android:fragment="org.dyndns.vip3r.radioremotecontrol.preferences.ControlElementsFragment"
+        android:key="control_elements_fragment" 
+        android:title="@string/control_elements_fragment_title" 
+        android:summary="@string/control_elements_fragment_summ" >
+    </header>
+
+</preference-headers>

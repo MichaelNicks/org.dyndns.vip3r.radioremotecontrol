@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android" >
+   <CheckBoxPreference 
+        android:key="control_topleft" 
+        android:title="@string/control_topleft_title" 
+        android:defaultValue="false"/>
+    <ListPreference 
+        android:key="control_topleft_list" 
+        android:title="@string/control_topleft_list_title"
+    	android:entries="@array/list_controls"
+    	android:entryValues="@array/list_controls_values"
+    	android:defaultValue="1"
+    	android:dependency="control_topleft"/>
+    <PreferenceScreen
+        android:fragment="org.dyndns.vip3r.radioremotecontrol.preferences.JoystickControlFragment"
+        android:key="control_topleft_subscreen"
+        android:title="@string/control_topleft_subscreen_title"
+        android:summary="@string/control_topleft_subscreen_summ"
+        android:dependency="control_topleft">
+    </PreferenceScreen>
+    <CheckBoxPreference 
+        android:key="control_topcenter" 
+        android:title="@string/control_topcenter_title" 
+        android:defaultValue="false"/>
+    <ListPreference 
+        android:key="control_topcenter_list" 
+        android:title="@string/control_topcenter_list_title"
+    	android:entries="@array/list_controls"
+    	android:entryValues="@array/list_controls_values"
+    	android:defaultValue="1"
+    	android:dependency="control_topcenter"/>
+    <CheckBoxPreference 
+        android:key="control_topright" 
+        android:title="@string/control_topright_title" 
+        android:defaultValue="false"/>
+    <ListPreference 
+        android:key="control_topright_list" 
+        android:title="@string/control_topright_list_title"
+    	android:entries="@array/list_controls"
+    	android:entryValues="@array/list_controls_values"
+    	android:defaultValue="1"
+    	android:dependency="control_topright" />
+    <CheckBoxPreference 
+        android:key="control_bottomleft" 
+        android:title="@string/control_bottomleft_title" 
+        android:defaultValue="false"/>
+    <ListPreference 
+        android:key="control_bottomleft_list" 
+        android:title="@string/control_bottomleft_list_title"
+    	android:entries="@array/list_controls"
+    	android:entryValues="@array/list_controls_values"
+    	android:defaultValue="1"
+    	android:dependency="control_bottomleft" />
+    <CheckBoxPreference 
+        android:key="control_bottomcenter" 
+        android:title="@string/control_bottomcenter_title" 
+        android:defaultValue="false"/>
+    <ListPreference 
+        android:key="control_bottomcenter_list" 
+        android:title="@string/control_bottomcenter_list_title"
+    	android:entries="@array/list_controls"
+    	android:entryValues="@array/list_controls_values"
+    	android:defaultValue="1"
+    	android:dependency="control_bottomcenter" />
+    <CheckBoxPreference 
+        android:key="control_bottomright" 
+        android:title="@string/control_bottomright_title" 
+        android:defaultValue="false"/>
+    <ListPreference 
+        android:key="control_bottomright_list" 
+        android:title="@string/control_bottomright_list_title"
+    	android:entries="@array/list_controls"
+    	android:entryValues="@array/list_controls_values"
+    	android:defaultValue="1"
+    	android:dependency="control_bottomright" />   
+
+</PreferenceScreen>

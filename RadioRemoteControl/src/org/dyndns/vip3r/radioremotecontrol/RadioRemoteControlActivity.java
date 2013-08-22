@@ -1,5 +1,7 @@
 package org.dyndns.vip3r.radioremotecontrol;
 
+import org.dyndns.vip3r.radioremotecontrol.preferences.PreferencesActivity;
+
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
@@ -55,9 +57,9 @@ public class RadioRemoteControlActivity extends Activity implements OnClickListe
 	}
 	
 	private void startSettings() {
-		Intent intent = new Intent();
-		intent.setClass(RadioRemoteControlActivity.this, SettingsActivity.class);
-		startActivity(intent);
+		Intent i = new Intent(this, PreferencesActivity.class );
+		startActivity(i);
+		this.finish();
 		}
 
 	@Override
@@ -68,10 +70,13 @@ public class RadioRemoteControlActivity extends Activity implements OnClickListe
 			startActivity(newStartScreen);
 			this.finish();
 			break;
-		case R.id.bSettings:
+		/*case R.id.bSettings:
 			Intent newSettingsScreen = new Intent(this, SettingsActivity.class );
 			startActivity(newSettingsScreen);
 			this.finish();
+			break;*/
+		case R.id.bSettings:
+			startSettings();
 			break;
 		}
 		

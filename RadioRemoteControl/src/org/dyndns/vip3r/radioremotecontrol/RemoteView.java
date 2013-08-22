@@ -3,6 +3,8 @@ package org.dyndns.vip3r.radioremotecontrol;
 
 import java.io.IOException;
 
+import org.dyndns.vip3r.radioremotecontrol.preferences.NetworkPreferenceFragment;
+
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.graphics.Bitmap;
@@ -10,7 +12,6 @@ import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Rect;
-import android.os.AsyncTask;
 import android.preference.PreferenceManager;
 import android.util.Log;
 import android.view.MotionEvent;
@@ -79,15 +80,15 @@ public class RemoteView extends SurfaceView implements SurfaceHolder.Callback {
 	private void loadPreferences() {
 		
 		SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(context);
-		if(sharedPref.getBoolean(SettingsFragment.KEY_SAME_URL, true) == true)
+		if(sharedPref.getBoolean(NetworkPreferenceFragment.KEY_SAME_URL, true) == true)
 		{
-			mjpgstream_url = sharedPref.getString(SettingsFragment.KEY_RASPBERRY_URL, "http://192.168.0.1");
+			mjpgstream_url = sharedPref.getString(NetworkPreferenceFragment.KEY_RASPBERRY_URL, "http://192.168.0.1");
 		}
 		else
 		{
-			mjpgstream_url = sharedPref.getString(SettingsFragment.KEY_MJPGSTREAM_URL, "http://192.168.0.1");
+			mjpgstream_url = sharedPref.getString(NetworkPreferenceFragment.KEY_MJPGSTREAM_URL, "http://192.168.0.1");
 		}
-		mjpgstream_port = sharedPref.getString(SettingsFragment.KEY_MJPGSTREAM_PORT, "8080");
+		mjpgstream_port = sharedPref.getString(NetworkPreferenceFragment.KEY_MJPGSTREAM_PORT, "8080");
 		Log.d("CV", mjpgstream_url);
 		Log.d("CV", mjpgstream_port);
 		

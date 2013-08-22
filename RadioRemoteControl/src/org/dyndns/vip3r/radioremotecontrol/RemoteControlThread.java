@@ -2,6 +2,8 @@ package org.dyndns.vip3r.radioremotecontrol;
 
 import java.io.IOException;
 
+import org.dyndns.vip3r.radioremotecontrol.preferences.NetworkPreferenceFragment;
+
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.graphics.Canvas;
@@ -36,15 +38,15 @@ public class RemoteControlThread extends Thread {
 	private void loadPreferences() {
 		
 		SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(context);
-		if(sharedPref.getBoolean(SettingsFragment.KEY_SAME_URL, true) == true)
+		if(sharedPref.getBoolean(NetworkPreferenceFragment.KEY_SAME_URL, true) == true)
 		{
-			webiopi_url = sharedPref.getString(SettingsFragment.KEY_RASPBERRY_URL, "http://192.168.0.1");
+			webiopi_url = sharedPref.getString(NetworkPreferenceFragment.KEY_RASPBERRY_URL, "http://192.168.0.1");
 		}
 		else
 		{
-			webiopi_url = sharedPref.getString(SettingsFragment.KEY_WEBIOPI_URL, "http://192.168.0.1");
+			webiopi_url = sharedPref.getString(NetworkPreferenceFragment.KEY_WEBIOPI_URL, "http://192.168.0.1");
 		}
-		webiopi_port = sharedPref.getString(SettingsFragment.KEY_WEBIOPI_PORT, "80");
+		webiopi_port = sharedPref.getString(NetworkPreferenceFragment.KEY_WEBIOPI_PORT, "80");
 		Log.d("CV", webiopi_url);
 		Log.d("CV", webiopi_port);
 	}
